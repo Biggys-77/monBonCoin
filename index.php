@@ -1,7 +1,8 @@
 <?php
 
-use Models\AnnoncesModel;
 use Models\UsersModel;
+use Models\AnnoncesModel;
+use Models\CategoriesModel;
 
 require_once('autoloader.php');
 
@@ -69,3 +70,15 @@ $pass = password_hash("1234", PASSWORD_DEFAULT);
 
 // Teste de la méhode delete
 // UsersModel::delete([4]);
+
+// var_dump(CategoriesModel::findAll());
+// echo "<hr>";
+// var_dump(CategoriesModel::findById([3]));
+// echo "<hr>";
+// var_dump(CategoriesModel::findByTitle(["jardin"]));
+
+// CategoriesModel::create(["peluche"]);
+
+// CategoriesModel::update(["musique", 7]);
+
+// CategoriesModel::delete([7]);
