@@ -34,7 +34,11 @@ class Routeur{
                 echo "vous êtes sur la page annonces";
                 break;
             case 'annonceDetail':
-                echo "vous êtes sur la page annoncesDetail";
+                // echo "vous êtes sur la page annoncesDetail";
+                if (isset($_GET['id'])) {
+                    $id = (int)$_GET['id'];
+                }
+                AnnoncesController::detail($id);
                 break;
             case 'annonceAjout':
                 echo "page création d'annonce";
