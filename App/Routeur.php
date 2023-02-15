@@ -4,6 +4,7 @@ namespace App;
 
 use Controllers\Controller;
 use Controllers\AnnoncesController;
+use Controllers\UsersController;
 
 class Routeur{
     public function app(){
@@ -59,7 +60,8 @@ class Routeur{
                 echo "page paner";
                 break;
             case 'inscription':
-                echo "page d'inscription";
+                // echo "page d'inscription";
+                $inscription = UsersController::inscription();
                 break;
             case 'connexion':
                 echo "page de connexion";

@@ -20,6 +20,14 @@ class Controller{
         require_once ROOT . '/Views/layout.php';
     }
 
+    public static function security(){
+        if(!empty($_POST)){
+            foreach ($_POST as $key => $value) {
+                htmlspecialchars(trim($value));
+            }
+        }
+    }
+
 
 
     // public function test(){
