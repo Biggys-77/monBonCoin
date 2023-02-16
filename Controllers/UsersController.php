@@ -51,7 +51,7 @@ class UsersController extends Controller {
                         $_POST['city']];
                 UsersModel::create($data);
                 $_SESSION['message'] = "Votre compte a bien été crée";
-                header('Location: ' . SITEBASE);
+                header('Location: connexion');
             }
         }
         
@@ -64,5 +64,46 @@ class UsersController extends Controller {
             'title' => 'Inscription',
             'errMsg' => $errMsg
         ]);
+    }
+
+
+    //Méthode de connexion
+    public static function connexion(){
+        $errMsg = "";
+
+        // Traitement du formulaire
+        if(!empty($_POST) && !empty($_POST['login']) && !empty($_POST['password'])){
+            // On sécurise la saisie
+            self::security();
+            $login = $_POST['login'];
+            // On vérifie que l'utilisateur soit présent en BDD
+            $user = UsersModel::findByLogin([$login]);
+            if (!$user) {
+                $errMsg = "Login ou mot de passe incorrect";
+            }else{
+                $pass = $_POST['password'];
+                if (password_verify($pass, $user['password'])) {
+                    // Enregistre dees infos de l'utilisateur en session
+                    $_SESSION['messages'] = "Salut content de vous revoir";
+                    $_SESSION['user'] = [
+                        'role' => $user['role'],
+                        'id' => $user['idUser'],
+                        'firstName' => $user['firstName'],
+                        'login' => $user['login']
+                    ];
+                    // Redirection vers la page d'accueil
+                    header('Location: ' . SITEBASE);
+                }else{
+                    $errMsg = "Login ou mot de passe incorrect";
+                }
+            }
+        }elseif(!empty($_POST)){
+            $errMsg = "Merci de remplir tout les champs";
+        }
+
+        self::render('users/connexion', [
+        'title' => 'Connexion',
+        'errMsg' => $errMsg
+    ]);
     }
 }

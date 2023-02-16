@@ -37,7 +37,7 @@
                 <input type="text" name="city" id="city" placeholder="Votre ville" class="form-control">
             </div>
         </div>
-        <div class="row justify-content-between my-5">
+        <div class="row justify-content-around my-5">
             <div class="col-12 col-md-4">
                 <label for="password">Mot de passe :</label>
                 <input type="password" name="password" id="password" placeholder="Votre Mot de passe" class="form-control">

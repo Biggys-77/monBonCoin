@@ -25,6 +25,18 @@
             <a class="nav-link" href="annonces">Toute les annonces</a>
             </li>
         </ul>
+        <ul class="navbar-nav ml-auto">
+            <?php if(isset($_SESSION['user'])) : ?>
+                <li class="nav-item"><a href="annonceAjout" class="btn btn-secondary mx-1">Nouvelle Annonces</a></li>
+                <li class="nav-item"><a href="profil" class="btn btn-secondary mx-1">Profil</a></li>
+                <li class="nav-item"><a href="deconnexion" class="btn btn-secondary mx-1">Deconnexion</a></li>
+            <?php else : ?>
+                <li class="nav-item"><a href="connexion" class="btn btn-secondary">Connexion</a></li>
+            <?php endif ?>
+            <?php if(isset($_SESSION['panier'])) : ?>
+                <li class="nav-item"><a href="panier?opp=affiche" class="btn btn-secondary"><i class="bi bi-cart4"></i></a></li>
+            <?php endif ?>
+        </ul>
         </div>
     </div>
 </nav>

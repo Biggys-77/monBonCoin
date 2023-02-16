@@ -41,7 +41,7 @@ class UsersModel extends Db{
         $response = self::getDb()->prepare($request);
         $response->execute($login);
 
-        return $response->fetchAll(PDO::FETCH_ASSOC);
+        return $response->fetch(PDO::FETCH_ASSOC);
     }
 
     //exo recherche par id ou login
