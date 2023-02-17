@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Models\UsersModel;
+use Models\AnnoncesModel;
 
 class UsersController extends Controller {
     // Création d'un nouvel utilisateur
@@ -105,5 +106,28 @@ class UsersController extends Controller {
         'title' => 'Connexion',
         'errMsg' => $errMsg
     ]);
+    }
+
+    public static function profil(){
+        if($_SESSION['user']['role'] == 1){
+            // Je suis admin donc je doit voir toutes les annonces
+            $annonces = AnnoncesModel::findAll();
+        }else{
+            // Uniquement les annonces de l'utilisateur connecté
+            $user = [$_SESSION['user']['id']];
+            $annonces = AnnoncesModel::findByUser($user);
+        }
+
+        $id = null;
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
+            $_SESSION['messages'] = 'Voulez vous vraiment supprimer votre annonce ?';
+        }
+
+        self::render('users/profil', [
+            'title' => "Mon profil",
+            'annonces' => $annonces,
+            'id' => $id
+        ]);
     }
 }

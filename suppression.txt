@@ -1,0 +1,20 @@
+"Solution 1"
+
+Cliquer sur supprimer dans profil qui ouvre le message de confirmation dans la view (profil) avec l'id de l'annonce.
+Dans le message de confirmation crée un bouton de suppression qui fait appel au routeur, qui redirige vers la méthode du controller (suppr) qui fait appel au model delete de notre model en conservant l'id de l'annonce tout au long du processus
+
+"Solution 2"
+
+Crée un bouton supprimer dans "profil" qui amene sur "supprAnnonce"
+Crée dans le routeur la route vers le controller et sa méthode "supprAnnonce"
+Récupérer l'annonce avec "findById"
+Crée un render avec l'annonce par "id" 
+Crée le titre "êtes vous sur de vouloir supprimer cette annonce" et un bouton de confirmation
+Crée une nouvelle view "supprAnnonce"
+Crée le code d'affichage de l'annonce (ou reprendre le code du détail)
+Crée un bouton supprimer sous l'annonce
+Crée le lien entre le bouton supprimer et le routeur "supprAnnonceConfirm"
+Crée dans l'AnnonceController la méthode "supprAnnonceConfirm" qui fait appel au model AnnoncesModel::delete($id)
+
+"Solution 3"
+

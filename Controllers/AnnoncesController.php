@@ -81,7 +81,7 @@ class AnnoncesController extends Controller{
                     $price = (int)$_POST['price'];
                     $photoName;
                     $newAnnonce = AnnoncesModel::create([$user, $categorie, $title, $description, $price, $photoName]);
-                    header('Location: ' . SITEBASE);
+                    header('Location: profil');
                 }else{
                     $errMsg = "Image trop lourde ou mauvais format";
                 }
@@ -136,7 +136,7 @@ class AnnoncesController extends Controller{
                     }
                     // Executer la requete update
                     $annonceModif = AnnoncesModel::update($data);
-                    header('Location: annonces');
+                    header('Location: profil');
 
                 }elseif(!empty($_POST)){
                     $errMsg = "Merci de remplir tous les champs (hors mis la photo)";
@@ -152,4 +152,17 @@ class AnnoncesController extends Controller{
             'errMsg' => $errMsg
         ]);
     }
+
+    // Méthode de suppression d'annonce
+    // public static function annonceSupp($id){
+    //     $id =[(int)$_GET['id']];
+    //     $_SESSION['messages'] = 'Voulez vous vraiment supprimer votre annonce ?';
+    // }
+
+    public static function annonceSuppConfirm($id){
+        AnnoncesModel::delete($id);
+        $_SESSION['messages'] = 'Votre annonce à bien étais supprimer !';
+        header('Location: profil');
+    }
+
 }
